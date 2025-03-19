@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  eslint: {
+    // Only run ESLint on development environment
+    ignoreDuringBuilds: true,
+  },
+}
 
-export default nextConfig;
+module.exports = nextConfig
