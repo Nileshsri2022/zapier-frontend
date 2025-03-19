@@ -118,7 +118,7 @@ function useAvailableActionsAndTriggers() {
     }
 }
 
-export default function() {
+export default function CreateZapPage() {
     const router = useRouter();
     const { availableActions, availableTriggers } = useAvailableActionsAndTriggers();
     const [selectedTrigger, setSelectedTrigger] = useState<{
@@ -152,7 +152,7 @@ export default function() {
                 }, {
                     withCredentials: true
                 })
-                
+
                 router.push("/dashboard");
 
             }}>Publish</PrimaryButton>
@@ -164,7 +164,9 @@ export default function() {
                 }} name={selectedTrigger?.name ? selectedTrigger.name : "Trigger"} index={1} />
             </div>
             <div className="w-full pt-2 pb-2">
-                {selectedActions.map((action, index) => <div className="pt-2 flex justify-center"> <ZapCell onClick={() => {
+                {selectedActions.map((action, index) => <div
+                key={`action-${action.index}`}
+                className="pt-2 flex justify-center"> <ZapCell onClick={() => {
                     setSelectedModalIndex(action.index);
                 }} name={action.availableActionName ? action.availableActionName : "Action"} index={action.index} /> </div>)}
             </div>
@@ -209,7 +211,7 @@ export default function() {
         }} index={selectedModalIndex} />}
     </div>
 }
-
+CreateZapPage.displayName = 'CreateZapPage';
 function Modal({ index, onSelect, availableItems }: { index: number, onSelect: (props: null | { name: string; id: string; metadata: any; }) => void, availableItems: {id: string, name: string, image: string;}[] }) {
     const [step, setStep] = useState(0);
     const [selectedAction, setSelectedAction] = useState<{
@@ -250,7 +252,9 @@ function Modal({ index, onSelect, availableItems }: { index: number, onSelect: (
                     }} />}
 
                     {step === 0 && <div>{availableItems?.map(({id, name, image}) => {
-                            return <div onClick={() => {
+                            return <div
+                            key={id}
+                            onClick={() => {
                                 if (isTrigger) {
                                     onSelect({
                                         id,
@@ -267,7 +271,7 @@ function Modal({ index, onSelect, availableItems }: { index: number, onSelect: (
                             }} className="flex border p-4 cursor-pointer hover:bg-slate-100">
                                 <img src={image} width={30} className="rounded-full" /> <div className="flex flex-col justify-center"> {name} </div>
                             </div>
-                        })}</div>}                    
+                        })}</div>}
                 </div>
             </div>
         </div>
@@ -299,7 +303,7 @@ function SolanaSelector({setMetadata}: {
     setMetadata: (params: any) => void;
 }) {
     const [amount, setAmount] = useState("");
-    const [address, setAddress] = useState("");    
+    const [address, setAddress] = useState("");
 
     return <div>
         <Input label={"To"} type={"text"} placeholder="To" onChange={(e) => setAddress(e.target.value)}></Input>
