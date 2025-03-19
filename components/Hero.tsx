@@ -13,8 +13,8 @@ const Hero = () => {
             <div className='flex justify-center items-center mt-5 text-2xl mx-5 text-center'> AI gives you automation superpowers, and Zapier puts them to work. Pairing AI and Zapier helps you turn ideas into workflows and bots that work for you.</div>
         </div>
         <div className='pt-7'>
-            <PrimaryButton onClick={() => {router.push('/signup')}}  children={'Get started for free'}/>
-            <SecondaryButton onClick={() => {router.push('/sales')}}  children={'Contact Sales'}/>
+            <PrimaryButton onClick={() => {router.push('/signup')}}  >Get started for free</PrimaryButton>
+            <SecondaryButton onClick={() => {router.push('/sales')}}  >Contact Sales</SecondaryButton>
         </div>
         <div className='flex mt-5'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
